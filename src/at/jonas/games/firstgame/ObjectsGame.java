@@ -2,9 +2,15 @@ package at.jonas.games.firstgame;
 
 import at.jonas.games.testgame.ObjectsGameOld;
 import org.newdawn.slick.*;
+import org.newdawn.slick.util.pathfinding.navmesh.Link;
+
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Random;
 
 public class ObjectsGame extends BasicGame {
-    private Rectangle rectangle;
+    private List<Actor> actors;
 
     public ObjectsGame(String title) {
         super(title);
@@ -12,17 +18,35 @@ public class ObjectsGame extends BasicGame {
 
     @Override
     public void init(GameContainer gameContainer) throws SlickException {
-        this.rectangle = new Rectangle(100,100,5);
+        this.actors = new ArrayList<>();
+        Random random = new Random();
+
+        for (int i = 0; i < 100; i++) {
+            Rectangle rectangle = new Rectangle(random.nextInt(800),random.nextInt(600),random.nextInt(49)+1);
+            this.actors.add(rectangle);
+        }
+        for (int i = 0; i < 50; i++) {
+            Circle circle = new Circle();
+            this.actors.add(circle);
+        }
+        for (int i = 0; i < 25; i++) {
+            Ellipse ellipse = new Ellipse(random.nextInt(800),random.nextInt(600));
+            this.actors.add(ellipse);
+        }
     }
 
     @Override
     public void update(GameContainer gameContainer, int delta) throws SlickException {
-        this.rectangle.update(delta);
+        for (Actor actor: this.actors) {
+            actor.update(delta);
+        }
     }
 
     @Override
     public void render(GameContainer gameContainer, Graphics graphics) throws SlickException {
-        this.rectangle.render(graphics);
+        for (Actor actor: this.actors) {
+            actor.render(graphics);
+        }
     }
 
 

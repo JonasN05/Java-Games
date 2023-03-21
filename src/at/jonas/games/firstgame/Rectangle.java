@@ -3,7 +3,7 @@ package at.jonas.games.firstgame;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.svg.Gradient;
 
-public class Rectangle {
+public class Rectangle implements Actor{
 
     private enum DIRECTION{
         RIGTH, DOWN, LEFT, UP
@@ -23,7 +23,7 @@ public class Rectangle {
 
     public void update(int delta){
         this.x += (float)delta/this.speed;
-        if (this.x > 600){
+        if (this.x > 800){
             this.x = 0;
         }
     }
