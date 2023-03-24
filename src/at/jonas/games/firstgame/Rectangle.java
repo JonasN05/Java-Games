@@ -1,5 +1,6 @@
 package at.jonas.games.firstgame;
 
+import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.svg.Gradient;
 
@@ -21,7 +22,7 @@ public class Rectangle implements Actor{
     }
 
 
-    public void update(int delta){
+    public void update(int delta, GameContainer container){
         this.x += (float)delta/this.speed;
         if (this.x > 800){
             this.x = 0;
